@@ -53,15 +53,15 @@ app.get("/login", function(req, res) {
 });
 app.get("/secrets", function(req, res) {
   if(req.isAuthenticated()){
-    res.render("/secrets");
+    res.render("secrets");
   }
   else{
-    res.render("/login");
+    res.redirect("/login");
   }
 });
 app.get("/logout", function(req, res) {
   req.logout();
-  res.render("/");
+  res.redirect("/");
 });
 
 app.post("/register", function(req, res) {
@@ -71,7 +71,7 @@ app.post("/register", function(req, res) {
     }
     else{
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
+        res.redirect("secrets");
 
       });
     }
