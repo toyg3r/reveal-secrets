@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   googleId:String,
-  secret: String
+  secret: []
 });
 
 userSchema.plugin(passportlocalmongoose);
@@ -151,7 +151,7 @@ app.post("/submit", function(req, res){
       console.log(err);
     }
     else{
-      founduser.secret = submitedsceret;
+      founduser.secret.push(submitedsceret);
       founduser.save(function(){
         res.redirect("/secrets");
       });
